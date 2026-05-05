@@ -131,10 +131,10 @@
 		}
 
 		if (themeToApply === 'dark' && !_theme.includes('oled')) {
-			document.documentElement.style.setProperty('--color-gray-800', '#333');
-			document.documentElement.style.setProperty('--color-gray-850', '#262626');
-			document.documentElement.style.setProperty('--color-gray-900', '#171717');
-			document.documentElement.style.setProperty('--color-gray-950', '#0d0d0d');
+			document.documentElement.style.setProperty('--color-gray-800', 'oklch(0.32 0.014 255)');
+			document.documentElement.style.setProperty('--color-gray-850', 'oklch(0.27 0.014 255)');
+			document.documentElement.style.setProperty('--color-gray-900', 'oklch(0.21 0.012 255)');
+			document.documentElement.style.setProperty('--color-gray-950', 'oklch(0.17 0.010 255)');
 		}
 
 		themes
@@ -156,13 +156,13 @@
 					? 'dark'
 					: 'light';
 				console.log('Setting system meta theme color: ' + systemTheme);
-				metaThemeColor.setAttribute('content', systemTheme === 'light' ? '#ffffff' : '#171717');
+				metaThemeColor.setAttribute('content', systemTheme === 'light' ? '#ffffff' : '#181a1f');
 			} else {
 				console.log('Setting meta theme color: ' + _theme);
 				metaThemeColor.setAttribute(
 					'content',
 					_theme === 'dark'
-						? '#171717'
+						? '#181a1f'
 						: _theme === 'oled-dark'
 							? '#000000'
 							: _theme === 'her'
@@ -194,16 +194,20 @@
 	};
 </script>
 
-<div class="flex flex-col h-full justify-between text-sm" id="tab-general">
-	<div class="  overflow-y-scroll max-h-[28rem] md:max-h-full">
-		<div class="">
-			<div class=" mb-1 text-sm font-medium">{$i18n.t('WebUI Settings')}</div>
+<div class="flex flex-col h-full justify-between text-sm font-primary" id="tab-general">
+	<div class="overflow-y-auto max-h-[28rem] md:max-h-full pr-1">
+		<div class="space-y-4">
+			<div class="mb-2 text-base font-bold text-[#0578B8] dark:text-blue-400">
+				{$i18n.t('WebUI Settings')}
+			</div>
 
-			<div class="flex w-full justify-between">
-				<div class=" self-center text-xs font-medium">{$i18n.t('Theme')}</div>
+			<div class="settings-row flex w-full justify-between items-center gap-3">
+				<div class="text-[13px] font-bold text-[#0578B8] dark:text-blue-400">
+					{$i18n.t('Theme')}
+				</div>
 				<div class="flex items-center relative">
 					<select
-						class="w-fit pr-8 rounded-sm py-2 px-2 text-xs bg-transparent text-right {$settings.highContrastMode
+						class="min-w-40 pr-9 rounded-lg py-2.5 px-3 text-[13px] bg-white/90 dark:bg-gray-900 text-right border border-[#ABB8C3] dark:border-gray-700 {$settings.highContrastMode
 							? ''
 							: 'outline-hidden'}"
 						bind:value={selectedTheme}
@@ -221,11 +225,13 @@
 				</div>
 			</div>
 
-			<div class=" flex w-full justify-between">
-				<div class=" self-center text-xs font-medium">{$i18n.t('Language')}</div>
+			<div class="settings-row flex w-full justify-between items-center gap-3">
+				<div class="text-[13px] font-bold text-[#0578B8] dark:text-blue-400">
+					{$i18n.t('Language')}
+				</div>
 				<div class="flex items-center relative">
 					<select
-						class="w-fit pr-8 rounded-sm py-2 px-2 text-xs bg-transparent text-right {$settings.highContrastMode
+						class="min-w-40 pr-9 rounded-lg py-2.5 px-3 text-[13px] bg-white/90 dark:bg-gray-900 text-right border border-[#ABB8C3] dark:border-gray-700 {$settings.highContrastMode
 							? ''
 							: 'outline-hidden'}"
 						bind:value={lang}
@@ -260,11 +266,13 @@
 			{/if}
 
 			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs font-medium">{$i18n.t('Notifications')}</div>
+				<div class="settings-row py-1.5 flex w-full justify-between items-center gap-3">
+					<div class="text-[13px] font-bold text-[#0578B8] dark:text-blue-400">
+						{$i18n.t('Notifications')}
+					</div>
 
 					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
+						class="button-secondary py-2 px-4 text-[13px] flex rounded-lg transition"
 						on:click={() => {
 							toggleNotification();
 						}}
@@ -286,13 +294,15 @@
 			<hr class="border-gray-100/30 dark:border-gray-850/30 my-3" />
 
 			<div>
-				<div class=" my-2.5 text-sm font-medium">{$i18n.t('System Prompt')}</div>
+				<div class="my-2.5 text-base font-bold text-[#0578B8] dark:text-blue-400">
+					{$i18n.t('System Prompt')}
+				</div>
 				<Textarea
 					bind:value={system}
 					className={'w-full text-sm outline-hidden resize-vertical' +
 						($settings.highContrastMode
 							? ' p-2.5 border-2 border-gray-300 dark:border-gray-700 rounded-lg bg-transparent text-gray-900 dark:text-gray-100 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 overflow-y-hidden'
-							: '  dark:text-gray-300 ')}
+							: ' p-3 border border-[#ABB8C3] dark:border-gray-700 rounded-lg dark:text-gray-300 bg-white dark:bg-gray-900 focus:ring-1 focus:ring-[#0693E3] focus:border-[#0693E3] ')}
 					rows="4"
 					placeholder={$i18n.t('Enter system prompt here')}
 				/>
@@ -300,13 +310,13 @@
 		{/if}
 
 		{#if $user?.role === 'admin' || (($user?.permissions.chat?.controls ?? true) && ($user?.permissions.chat?.params ?? true))}
-			<div class="mt-2 space-y-3 pr-1.5">
+			<div class="mt-3 space-y-3 pr-1.5">
 				<div class="flex justify-between items-center text-sm">
-					<div class="  font-medium">{$i18n.t('Advanced Parameters')}</div>
+					<div class="font-bold text-[#0578B8] dark:text-blue-400">
+						{$i18n.t('Advanced Parameters')}
+					</div>
 					<button
-						class=" text-xs font-medium {($settings?.highContrastMode ?? false)
-							? 'text-gray-800 dark:text-gray-100'
-							: 'text-gray-400 dark:text-gray-500'}"
+						class="text-[13px] font-bold text-[#0578B8] dark:text-blue-400 hover:underline"
 						type="button"
 						aria-expanded={showAdvanced}
 						on:click={() => {
@@ -322,9 +332,9 @@
 		{/if}
 	</div>
 
-	<div class="flex justify-end pt-3 text-sm font-medium">
+	<div class="flex justify-end pt-4 text-sm font-medium">
 		<button
-			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
+			class="button-primary px-5 py-2.5 text-sm font-semibold transition rounded-lg"
 			on:click={() => {
 				saveHandler();
 			}}
@@ -333,3 +343,9 @@
 		</button>
 	</div>
 </div>
+
+<style>
+	.settings-row {
+		padding: 0.5rem 0;
+	}
+</style>

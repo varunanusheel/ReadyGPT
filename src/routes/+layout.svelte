@@ -1127,7 +1127,25 @@
 
 <svelte:head>
 	<title>{$WEBUI_NAME}</title>
-	<link crossorigin="anonymous" rel="icon" href="{WEBUI_BASE_URL}/static/favicon.png" />
+	<link
+		crossorigin="anonymous"
+		rel="icon"
+		type="image/png"
+		href="{WEBUI_BASE_URL}/favicon.png?v=readygpt-icon-{$WEBUI_VERSION}"
+		media="(prefers-color-scheme: light)"
+	/>
+	<link
+		crossorigin="anonymous"
+		rel="icon"
+		type="image/png"
+		href="{WEBUI_BASE_URL}/favicon-dark.png?v=readygpt-icon-{$WEBUI_VERSION}"
+		media="(prefers-color-scheme: dark)"
+	/>
+	<link
+		crossorigin="anonymous"
+		rel="shortcut icon"
+		href="{WEBUI_BASE_URL}/favicon.ico?v=readygpt-icon-{$WEBUI_VERSION}"
+	/>
 
 	<meta name="apple-mobile-web-app-title" content={$WEBUI_NAME} />
 	<meta name="description" content={$WEBUI_NAME} />

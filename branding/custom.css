@@ -1,0 +1,165 @@
+/*
+  ReadyGPT — Open WebUI
+  Theme-aware, fixes rounding, adds chip suggestions + username greeting.
+*/
+
+:root {
+  --ready-primary: #1f5fff;
+  --ready-primary-hover: #184ed1;
+  --ready-focus: 0 0 0 3px rgba(31, 95, 255, 0.22);
+}
+
+/* ── Background (dark) ── */
+.dark html, .dark body, .dark #app,
+html.dark, body.dark {
+  background:
+    radial-gradient(circle at top left, rgba(31, 95, 255, 0.09) 0%, transparent 30%),
+    radial-gradient(circle at bottom right, rgba(31, 95, 255, 0.05) 0%, transparent 24%),
+    #0b1220 !important;
+}
+
+/* ── Sidebar ── */
+aside {
+  border-right: 1px solid rgba(148, 163, 184, 0.15);
+  backdrop-filter: blur(12px);
+}
+.dark aside {
+  background: rgba(8, 15, 31, 0.88) !important;
+}
+
+/* ── Fix textarea/input rounding ── */
+textarea,
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"] {
+  border-radius: 12px !important;
+}
+
+form textarea,
+div[class*="chat"] textarea {
+  border-radius: 16px !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: var(--ready-focus) !important;
+  border-color: var(--ready-primary) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 0.5;
+}
+
+/* ── Buttons ── */
+button {
+  border-radius: 10px;
+}
+button[class*="rounded-full"],
+button[class*="icon"] {
+  border-radius: 999px !important;
+}
+
+button[class*="bg-blue"],
+.bg-blue-500, .bg-blue-600, .bg-blue-700,
+[aria-selected="true"] {
+  background: linear-gradient(180deg, #2b6dff 0%, #1f5fff 100%) !important;
+  border-color: #1b52db !important;
+  color: #ffffff !important;
+}
+button[class*="bg-blue"]:hover,
+.bg-blue-500:hover, .bg-blue-600:hover, .bg-blue-700:hover {
+  background: linear-gradient(180deg, #235ce0 0%, #184ed1 100%) !important;
+}
+
+/* ── Dropdowns ── */
+[role="menu"],
+[role="listbox"],
+[data-radix-popper-content-wrapper] > * {
+  border-radius: 14px !important;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.18) !important;
+  backdrop-filter: blur(12px);
+}
+.dark [role="menu"],
+.dark [role="listbox"],
+.dark [data-radix-popper-content-wrapper] > * {
+  background: rgba(15, 23, 42, 0.96) !important;
+}
+
+/* ── Sidebar active ── */
+aside a[aria-current="page"],
+aside button[class*="active"] {
+  background: rgba(31, 95, 255, 0.16) !important;
+  color: #dbe8ff !important;
+  border-radius: 10px !important;
+}
+
+/* ── Code blocks ── */
+.dark pre {
+  background: #08101f !important;
+  color: #dbe7f5 !important;
+}
+
+/* ── Links ── */
+a { color: #6b9fff; }
+a:hover { color: #a3c0ff; }
+
+/* ── Focus ring ── */
+button:focus-visible,
+a:focus-visible {
+  outline: none !important;
+  box-shadow: var(--ready-focus) !important;
+}
+
+/* ── USERNAME GREETING ── */
+[data-rg-patched] {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* ── PROMPT SUGGESTION CHIPS ── */
+/* Unlock the fixed-height container */
+.h-40.w-full.svelte-6tnq1o {
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Reflow the list into a horizontal wrapping row */
+div[role="list"].svelte-6tnq1o {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  max-height: none !important;
+  overflow: visible !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px 0 !important;
+}
+
+/* Each chip: shrink to content, pill shape */
+button[role="listitem"].svelte-6tnq1o {
+  width: auto !important;
+  flex: 0 0 auto !important;
+  flex-direction: row !important;
+  border: 1px solid rgba(148, 163, 184, 0.2) !important;
+  border-radius: 999px !important;
+  padding: 6px 14px !important;
+  background: transparent !important;
+  white-space: nowrap !important;
+}
+
+button[role="listitem"].svelte-6tnq1o:hover {
+  background: rgba(31, 95, 255, 0.08) !important;
+  border-color: rgba(31, 95, 255, 0.35) !important;
+}
+
+/* Hide subtitle, keep only the bold title */
+button[role="listitem"].svelte-6tnq1o .text-xs {
+  display: none !important;
+}

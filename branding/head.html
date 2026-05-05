@@ -1,0 +1,47 @@
+<script>
+    (function () {
+      const GREETING = () => {
+        const h = new Date().getHours();
+        if (h < 12) return 'Morning';
+        if (h < 17) return 'Afternoon';
+        return 'Evening';
+      };
+    
+      function getUserName() {
+        try {
+          const user = JSON.parse(localStorage.getItem('user') || '{}');
+          return user.name?.split(' ')[0] || user.email?.split('@')[0] || null;
+        } catch { return null; }
+      }
+    
+      function patchGreeting() {
+        const name = getUserName();
+        if (!name) return;
+        const candidates = [...document.querySelectorAll('h1')];
+        for (const el of candidates) {
+          if (el.innerText?.trim() && el.closest('aside') === null) {
+            el.innerText = `${GREETING()}, ${name}`;
+            el.setAttribute('data-rg-patched', '1');
+            break;
+          }
+        }
+      }
+    
+      function patchSuggestions() {
+        document.querySelectorAll(
+          '[class*="suggestion"]:not([data-rg-chip]), [class*="prompt-suggestion"]:not([data-rg-chip])'
+        ).forEach(el => el.setAttribute('data-rg-chip', '1'));
+      }
+    
+      const observer = new MutationObserver(() => {
+        patchGreeting();
+        patchSuggestions();
+      });
+    
+      document.addEventListener('DOMContentLoaded', () => {
+        observer.observe(document.body, { childList: true, subtree: true });
+        patchGreeting();
+        patchSuggestions();
+      });
+    })();
+    </script>

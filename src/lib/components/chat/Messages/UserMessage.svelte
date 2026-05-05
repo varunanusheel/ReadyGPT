@@ -333,7 +333,7 @@
 						<div>
 							<button
 								id="save-edit-message-button"
-								class="px-3.5 py-1.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-200 transition rounded-3xl"
+								class="button-secondary px-3.5 py-1.5 transition rounded-3xl"
 								on:click={() => {
 									editMessageConfirmHandler(false);
 								}}
@@ -355,7 +355,7 @@
 
 							<button
 								id="confirm-edit-message-button"
-								class="px-3.5 py-1.5 bg-gray-900 dark:bg-white hover:bg-gray-850 text-gray-100 dark:text-gray-800 transition rounded-3xl"
+								class="button-primary px-3.5 py-1.5 transition rounded-3xl"
 								on:click={() => {
 									editMessageConfirmHandler();
 								}}
@@ -369,8 +369,8 @@
 				<div class="w-full">
 					<div class="flex {($settings?.chatBubble ?? true) ? 'justify-end pb-1' : 'w-full'}">
 						<div
-							class="rounded-3xl {($settings?.chatBubble ?? true)
-								? `max-w-[90%] px-4 py-1.5  bg-gray-50 dark:bg-gray-850 ${
+							class="user-message-bubble rounded-3xl {($settings?.chatBubble ?? true)
+								? `max-w-[90%] px-4 py-1.5 ${
 										message.files ? 'rounded-tr-lg' : ''
 									}`
 								: ' w-full'}"

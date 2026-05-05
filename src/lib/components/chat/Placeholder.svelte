@@ -66,12 +66,37 @@
 
 	let models = [];
 	let selectedModelIdx = 0;
+	let currentHour = new Date().getHours();
+	let greetingTimer: ReturnType<typeof setInterval> | undefined;
+
+	const getGreetingPrefix = (hour: number) => {
+		if (hour < 12) return 'Good Morning';
+		if (hour < 18) return 'Good Afternoon';
+		return 'Good Evening';
+	};
+
+	$: fullName = $user?.name?.trim() || '';
+	$: firstName = fullName.split(/\s+/).filter(Boolean)[0] || 'there';
+	$: displayName = firstName;
+	$: greeting = `${getGreetingPrefix(currentHour)} ${displayName}`;
 
 	$: if (selectedModels.length > 0) {
 		selectedModelIdx = models.length - 1;
 	}
 
 	$: models = selectedModels.map((id) => $_models.find((m) => m.id === id));
+
+	onMount(() => {
+		greetingTimer = setInterval(() => {
+			currentHour = new Date().getHours();
+		}, 60_000);
+
+		return () => {
+			if (greetingTimer) {
+				clearInterval(greetingTimer);
+			}
+		};
+	});
 </script>
 
 <div class="m-auto w-full max-w-6xl px-2 @2xl:px-20 translate-y-6 py-24 text-center">
@@ -144,19 +169,9 @@
 						class=" text-3xl @sm:text-3xl line-clamp-1 flex items-center"
 						in:fade={{ duration: 100 }}
 					>
-						{#if models[selectedModelIdx]?.name}
-							<Tooltip
-								content={models[selectedModelIdx]?.name}
-								placement="top"
-								className=" flex items-center "
-							>
-								<span class="line-clamp-1">
-									{models[selectedModelIdx]?.name}
-								</span>
-							</Tooltip>
-						{:else}
-							{$i18n.t('Hello, {{name}}', { name: $user?.name })}
-						{/if}
+						<Tooltip content={greeting} placement="top" className=" flex items-center ">
+							<span class="line-clamp-1">{greeting}</span>
+						</Tooltip>
 					</div>
 				</div>
 

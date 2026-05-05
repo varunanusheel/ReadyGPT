@@ -336,9 +336,9 @@
 							groupedMessageIds[modelIdx].messageIds[groupedMessageIdsIdx[modelIdx]]}
 
 						<div
-							class=" snap-center w-full max-w-full m-1 border {history.messages[messageId]
+							class="snap-center w-full max-w-full m-1 border {history.messages[messageId]
 								?.modelIdx == modelIdx
-								? `bg-gray-50 dark:bg-gray-850 border-gray-100 dark:border-gray-800 border-2 ${
+								? `chat-card-active bg-gray-50 dark:bg-gray-850 border-gray-100 dark:border-gray-800 border-2 ${
 										$mobile ? 'min-w-full' : 'min-w-80'
 									}`
 								: `border-gray-100/30 dark:border-gray-850/30 border-dashed ${
