@@ -16,6 +16,7 @@ services:
     container_name: open-webui
     volumes:
       - open-webui:/app/backend/data
+      - ./backend/open_webui/static:/app/backend/open_webui/static:ro
     depends_on:
       - ollama
     ports:
@@ -23,6 +24,10 @@ services:
     environment:
       - 'OLLAMA_BASE_URL=http://ollama:11434'
       - 'WEBUI_SECRET_KEY='
+      - 'WEBUI_NAME=${WEBUI_NAME-ReadyGPT}'
+      - 'WEBUI_URL=${WEBUI_URL-https://your-campus-url.com}'
+      # If you have an enterprise license:
+      # - 'WEBUI_FAVICON_URL=https://your-cdn/ready-hat.png'
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
