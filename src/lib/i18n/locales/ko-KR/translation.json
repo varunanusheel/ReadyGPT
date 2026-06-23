@@ -1943,7 +1943,6 @@
 	"Successfully imported {{userCount}} users.": "성공적으로 {{userCount}}명의 사용자를 가져왔습니다.",
 	"Successfully updated.": "성공적으로 업데이트되었습니다.",
 	"Suggest a change": "변경 제안",
-	"Suggested": "제안",
 	"Support": "지원",
 	"Support this plugin:": "플러그인 지원",
 	"Supported MIME Types": "지원하는 MIME 타입",

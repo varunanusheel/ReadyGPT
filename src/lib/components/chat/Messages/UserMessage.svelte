@@ -370,9 +370,7 @@
 					<div class="flex {($settings?.chatBubble ?? true) ? 'justify-end pb-1' : 'w-full'}">
 						<div
 							class="user-message-bubble rounded-3xl {($settings?.chatBubble ?? true)
-								? `max-w-[90%] px-4 py-1.5 ${
-										message.files ? 'rounded-tr-lg' : ''
-									}`
+								? `max-w-[90%] px-4 py-1.5 ${message.files ? 'rounded-tr-lg' : ''}`
 								: ' w-full'}"
 						>
 							{#if message.content}

@@ -1943,7 +1943,6 @@
 	"Successfully imported {{userCount}} users.": "{{userCount}} 人のユーザが正常にインポートされました。",
 	"Successfully updated.": "正常に更新されました。",
 	"Suggest a change": "変更を提案",
-	"Suggested": "提案",
 	"Support": "サポート",
 	"Support this plugin:": "このプラグインを支援する:",
 	"Supported MIME Types": "対応するMIMEタイプ",

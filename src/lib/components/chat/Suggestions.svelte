@@ -65,7 +65,9 @@
 </script>
 
 {#if filteredPrompts.length === 0}
-	<div class="mb-2 flex gap-1 text-[13px] font-semibold items-center text-[#0578B8] dark:text-blue-400">
+	<div
+		class="mb-2 flex gap-1 text-[13px] font-semibold items-center text-[#0578B8] dark:text-blue-400"
+	>
 		<div
 			class="flex w-full {$settings?.landingPageMode === 'chat'
 				? ' -mt-1'
@@ -90,7 +92,9 @@
 					on:click={() => onSelect({ type: 'prompt', data: prompt.content })}
 				>
 					<Bolt className="size-4 text-[#0578B8] dark:text-blue-400 shrink-0" />
-					<span class="text-sm font-bold text-[#0578B8] dark:text-blue-300 transition whitespace-nowrap">
+					<span
+						class="text-sm font-bold text-[#0578B8] dark:text-blue-300 transition whitespace-nowrap"
+					>
 						{#if prompt.title && prompt.title[0] !== ''}
 							{prompt.title[0]}
 						{:else}

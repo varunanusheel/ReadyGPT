@@ -2071,7 +2071,8 @@
 												>
 													<button
 														id="send-message-button"
-														class="chat-send-button {!(prompt === '' && files.length === 0) || uploadPending
+														class="chat-send-button {!(prompt === '' && files.length === 0) ||
+														uploadPending
 															? ''
 															: 'text-white bg-gray-200 dark:text-gray-900 dark:bg-gray-700 disabled'} transition rounded-full p-1.5 self-center"
 														type="submit"
