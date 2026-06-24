@@ -78,13 +78,11 @@
 					metaThemeColorTag.setAttribute('content', '#181a1f');
 				}
 
-				const preloadHref = document.documentElement.classList.contains('dark')
-					? '/static/splash-dark.png'
-					: '/static/splash.png';
+				const startupLogoHref = '/favicon.png?v=readygpt-icon';
 				const preload = document.createElement('link');
 				preload.rel = 'preload';
 				preload.as = 'image';
-				preload.href = preloadHref;
+				preload.href = startupLogoHref;
 				preload.setAttribute('fetchpriority', 'high');
 				document.head.appendChild(preload);
 
@@ -101,15 +99,13 @@
 						}
 					}
 				});
-				const isDarkMode = document.documentElement.classList.contains('dark');
-
 				const logo = document.createElement('img');
 				logo.id = 'logo';
 				logo.style =
 					'position: absolute; width: auto; height: 6rem; top: 44%; left: 50%; transform: translateX(-50%); display:block;';
 				logo.loading = 'eager';
 				logo.fetchPriority = 'high';
-				logo.src = isDarkMode ? '/static/splash-dark.png' : '/static/splash.png';
+				logo.src = startupLogoHref;
 
 				document.addEventListener('DOMContentLoaded', function () {
 					const splash = document.getElementById('splash-screen');
@@ -157,7 +153,7 @@
 				<img
 					id="logo-her"
 					style="width: auto; height: 13rem"
-					src="/static/splash.png"
+					src="/favicon.png?v=readygpt-icon"
 					loading="eager"
 					fetchpriority="high"
 					class="animate-pulse-fast"
@@ -232,7 +228,6 @@
 
 		html.her #logo-her {
 			display: block;
-			filter: invert(1);
 		}
 
 		html.her #progress-background {
